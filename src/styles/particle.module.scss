@@ -1,0 +1,134 @@
+$total: 1000; // total particles
+$orb-size: 200px;
+$tab-orb-size: 50px; // New orb size for tablet screens
+$mobile-orb-size: 50px; // New orb size for mobile screens
+$particle-size: 4px; // Reduced particle size for mobile screens
+$time: 14s;
+$base-hue: 0; // change for different colors (180 is nice)
+
+// Convert hex color to HSLA
+$custom-hue: 213;
+$custom-saturation: 80%;
+$custom-lightness: 54%;
+$custom-alpha: 1;
+
+.wrap {
+  position: relative;
+  top: 50%;
+  left: 50%; // Centered horizontally
+  width: max-content; // Adjusted for responsive width
+  height: 10; // Adjusted for responsive height
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.c {
+  position: absolute;
+  width: $particle-size;
+  height: $particle-size;
+  border-radius: 100%;
+  opacity: 0;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotateY(360deg) rotateX(360deg);
+  }
+}
+
+@for $i from 1 through $total {
+  $z: (random(360) * 1deg); // random angle to rotateZ
+  $y: (random(360) * 1deg); // random to rotateX
+  $hue: ((40 / $total * $i) + $base-hue); // set hue
+
+  .c:nth-child(#{$i}) {
+    // grab the nth particle
+    animation: orbit#{$i} $time infinite;
+    animation-delay: ($i * 0.01s);
+    background-color: hsla(
+      $custom-hue,
+      $custom-saturation,
+      $custom-lightness,
+      $custom-alpha
+    ); // Use the custom color
+  }
+
+  @keyframes orbit#{$i} {
+    20% {
+      opacity: 1; // fade in
+    }
+    30% {
+      opacity: 1; // hold opacity
+      transform: rotateZ(-$z) rotateY($y) translateX($orb-size) rotateZ($z); // form orb
+    }
+    80% {
+      opacity: 1; // hold opacity
+      transform: rotateZ(-$z) rotateY($y) translateX($orb-size) rotateZ($z); // hold orb state 30-80
+    }
+    // 100% {
+    //   opacity: 0; // fade out
+    //   transform: rotateZ(-$z) rotateY($y) translateX(($orb-size*3)) rotateZ($z); // translateX * 3
+    // }
+  }
+}
+
+@media (max-width: 767px) {
+  .wrap {
+    max-width: $tab-orb-size; // Set max-width to the tablet orb size
+    height: 5; // Adjusted height for tablet screens
+    top: -100px; // Adjusted top position for tablet screens
+  }
+
+  // Use the smaller orb size for tablet screens
+  $orb-size: $tab-orb-size;
+}
+
+// Media query for mobile screens
+@media (max-width: 640px) {
+  .wrap {
+    max-width: $mobile-orb-size; // Set max-width to the mobile orb size
+    height: 3; // Adjusted height for mobile screens
+    top: -200px; // Adjusted top position for mobile screens
+  }
+
+  @for $i from 1 through $total {
+    $z: (random(360) * 1deg); // random angle to rotateZ
+    $y: (random(360) * 1deg); // random to rotateX
+    $hue: ((40 / $total * $i) + $base-hue); // set hue
+
+    .c:nth-child(#{$i}) {
+      // grab the nth particle
+      animation: orbit#{$i} $time infinite;
+      animation-delay: ($i * 0.01s);
+      background-color: hsla(
+        $custom-hue,
+        $custom-saturation,
+        $custom-lightness,
+        $custom-alpha
+      ); // Use the custom color
+    }
+
+    @keyframes orbit#{$i} {
+      20% {
+        opacity: 1; // fade in
+      }
+      30% {
+        opacity: 1; // hold opacity
+        transform: rotateZ(-$z) rotateY($y) translateX($orb-size * 0.8)
+          rotateZ($z); // form orb
+      }
+      80% {
+        opacity: 1; // hold opacity
+        transform: rotateZ(-$z) rotateY($y) translateX($orb-size * 0.9)
+          rotateZ($z); // hold orb state 30-80
+      }
+      // 100% {
+      //   opacity: 0; // fade out
+      //   transform: rotateZ(-$z) rotateY($y) translateX(($orb-size*3)) rotateZ($z); // translateX * 3
+      // }
+    }
+  }
+
+  // Use the smaller orb size for mobile screens
+  $orb-size: $mobile-orb-size;
+}

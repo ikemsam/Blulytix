@@ -1,3 +1,14 @@
 {
-  "extends": "next/core-web-vitals"
+	"extends": [
+		"plugin:@typescript-eslint/recommended",
+		"plugin:prettier/recommended",
+		"next/core-web-vitals",
+		"next"
+	],
+	"plugins": ["react", "@typescript-eslint", "prettier"],
+	"rules": {
+		"react/no-unescaped-entities": "off",
+		"@next/next/no-page-custom-font": "off"
+	},
+	"parser": "@typescript-eslint/parser"
 }
