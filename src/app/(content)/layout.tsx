@@ -21,6 +21,8 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+      </head>
       <body
         className={`${raleway.className} text-dark dark:text-secondary bg-[#FAFAFA] dark:bg-dark`}
       >
