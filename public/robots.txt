@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.jpeg$
+Allow: /*.gif$
+
+Sitemap: https://blulytix.ai/sitemap.xml
