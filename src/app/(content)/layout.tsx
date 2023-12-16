@@ -22,6 +22,12 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta name="DC.title" content="Blulytix" />
+<meta name="geo.region" content="PL" />
+<meta name="geo.placename" content="Gdynia" />
+<meta name="geo.position" content="54.501178;18.434342" />
+<meta name="ICBM" content="54.501178, 18.434342" />
+
       </head>
       <body
         className={`${raleway.className} text-dark dark:text-secondary bg-[#FAFAFA] dark:bg-dark`}
