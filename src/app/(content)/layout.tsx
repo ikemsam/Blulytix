@@ -77,6 +77,8 @@ export default async function RootLayout({
 }
  </script>
 
+        <meta name="google-site-verification" content="Q1SOwEf2MAIkesNcLNUegZ_XTzOB2xcWGIz2kBKaqRY" />
+
       </head>
       <body
         className={`${raleway.className} text-dark dark:text-secondary bg-[#FAFAFA] dark:bg-dark`}
